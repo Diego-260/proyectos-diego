@@ -1,0 +1,58 @@
+<div class="container-fluid mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            <div class="card">
+                <div class="card-body text-center">
+                    <div class="div-titulo">
+                        <span class = "titulo">LISTA DE ASISTENTES</span>
+                    </div>
+                    <h5 *ngIf="listaAsistentes.length > 0">El número de asistentes al evento es: {{listaAsistentes.length}}</h5>
+                    <div class="input-group mb-3 mt-3">
+                        <div class="col">
+                            <select class="form-select" name="selectFiltro" [(ngModel)]="columnaFiltro">
+                                <option value="" disabled selected hidden>Filtrar por...</option>
+                                <option value="numDoc">Número de documento</option>
+                                <option value="nombre">Nombre</option>
+                                <option value="email">E-mail</option>
+                            </select>
+                        </div>
+                        <div class="col-9">
+                            <input type="text" class="form-control" placeholder="Buscar..." name="inputFiltro"
+                            [(ngModel)]="filtroAsistentes">
+                        </div>        
+                    </div>
+                    <table *ngIf="listaAsistentes.length > 0" class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col">Nombre</th>
+                                <th scope="col">Tipo de documento</th>
+                                <th scope="col">Número de documento</th>
+                                <th scope="col">Teléfono móvil</th>
+                                <th scope="col">E-mail</th>
+                                <th scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor = "let asistente of listaAsistentes | filter:[columnaFiltro, filtroAsistentes]">
+                                <td>{{ asistente.nombre }}</td>
+                                <td>{{ asistente.tipoDoc }}</td>
+                                <td>{{ asistente.numDoc }}</td>
+                                <td>{{ asistente.telefono }}</td>
+                                <td>{{ asistente.email }}</td>
+                                <td>
+                                    <i [routerLink]="['/editar-asistente', asistente._id]" class="fas fa-pen-square fa-2x"></i>
+                                    <i (click)="borrarAsistente(asistente._id)" class="fas fa-trash-alt fa-2x"></i> 
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <h5 *ngIf="listaAsistentes.length == 0">No hay asistentes registrados</h5>
+                    <div class="col text-center mt-2">
+                        <button class="btn btn-success" routerLink='/'>AGREGAR ASISTENTE</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</div>

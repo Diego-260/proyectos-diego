@@ -1,0 +1,24 @@
+.fas{
+    cursor: pointer;
+    margin-left: 4px;
+}
+
+.fa-trash-alt{
+    color: #AE1309;
+}
+.fa-pen-square{
+    color: #F1D41A;
+}
+
+.container-fluid{
+    width: 1300px;
+}
+
+.div-titulo{
+    background-color: #E0E4E5;
+}
+
+h5{
+    margin-top: 10px;
+    text-align: start;
+}
